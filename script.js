@@ -2,11 +2,6 @@
 
 const gameChoice = ['rock','paper','scissors']
 
-
-
-
-
-
 function getComputerChoice(choice){
 
     return choice[Math.floor(Math.random() * choice.length)]
@@ -14,54 +9,34 @@ function getComputerChoice(choice){
 
 
 
-// update count and print round winner
-
-// function updateCountandWinner(competitor){
-
-//     console.log(`${competitor} wins `)
-// }
-
 // plays the game and declares winner of round
-function playGame(pChoice, cChoice){
-let pChoiceLower = pChoice.toLowerCase()
-let cChoiceLower = cChoice.toLowerCase()
+function playGame(playerChoice, computerChoice){
+let playerChoiceLower = playerChoice.toLowerCase()
+let computerChoiceLower = computerChoice.toLowerCase()
 
 let roundWinner = '';
 
-    if(pChoiceLower === 'rock' && cChoiceLower === 'scissors'){
-        roundWinner = 'player wins rock beats scissors'
-return roundWinner
+// player choice
+if((playerChoiceLower === 'rock' && computerChoiceLower === 'scissors')||
+    (playerChoiceLower === 'scissors' && computerChoiceLower === 'paper')||
+    (playerChoiceLower === 'paper' && computerChoiceLower === 'rock')
+    ){
+        roundWinner = `player wins: ${playerChoice} beats ${computerChoice}`
+        return roundWinner
+}
 
-    }
-    else if(pChoiceLower === 'scissors' && cChoiceLower === 'paper'){
-         roundWinner = 'player wins scissors beats paper'
-        return roundWinner
-       
-    }
-    else if(pChoiceLower === 'paper' && cChoiceLower === 'rock'){
-        roundWinner = 'player wins paper beats rock'
-        return roundWinner
-        
-    }
 
     // computer choice
-    else if(cChoiceLower === 'rock' && pChoiceLower === 'scissors'){
-         roundWinner = 'computer wins rock beats scissors'
-return roundWinner
-
-    }
-    else if(cChoiceLower === 'scissors' && pChoiceLower === 'paper'){
-           roundWinner = 'computer wins rock beats paper'
+   else if((computerChoiceLower === 'rock' && playerChoiceLower === 'scissors')||
+    (computerChoiceLower === 'scissors' && playerChoiceLower === 'paper')||
+    (computerChoiceLower === 'paper' && playerChoiceLower === 'rock')
+    ){
+        roundWinner = `computer wins: ${computerChoice} beats ${playerChoice}`
         return roundWinner
-      
     }
-    else if(cChoiceLower === 'paper' && pChoiceLower === 'rock'){
-         roundWinner = 'computer wins paper beats rock'
-        return roundWinner
-        
-    }
+  
     else{
-        roundWinner = `draw: player got ${pChoiceLower} and computer got ${cChoiceLower}`
+        roundWinner = `draw: player got ${playerChoiceLower} and computer got ${computerChoiceLower}`
         return roundWinner
     }
   

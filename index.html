@@ -4,10 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" src='./styles.css'/>
     <title>sams rock paper scissors</title>
 </head>
 <body>
-    
+    <div id="gameBody">
+        <h1>Time to decide the fate of the world</h1>
+        <h2>you will playing a game of rock paper scissors against an alien invader</h2>
+        <h3>First to reach a score of 5 wins</h3>
+        <p>Select your choice below</p>
+        <div class="selectionContainer">
+            <button class="rock">Rock</button>
+            <button class="paper">Paper</button>
+            <button class="scissors">Scissors</button>
+        </div>
+        <div class="scoreContainer">
+   <p>Player Score: <span class="playerScore">0</span></p>
+        <p >Alien Score: <span class="alienScore"> 0</span></p>
+        </div>
+     
+        <p class="feedback">lets get started</p>
+    </div>
     <script src="./script.js"></script>
 </body>
 </html>

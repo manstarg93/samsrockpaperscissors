@@ -2,83 +2,96 @@
 
 const gameChoice = ['rock','paper','scissors']
 
-function getComputerChoice(choice){
+const rock = document.querySelector('.rock')
+const paper = document.querySelector('.paper')
+const scissors = document.querySelector('.scissors')
+const feedback = document.querySelector('.feedback')
+const playerScore = document.querySelector('.playerScore')
+const alienScore = document.querySelector('.alienScore')
 
-    return choice[Math.floor(Math.random() * choice.length)]
-}
+let playerNumber = parseInt(playerScore.innerHTML)
+ let alienNumber = parseInt(alienScore.innerHTML)
 
 
 
 // plays the game and declares winner of round
-function playGame(playerChoice, computerChoice){
-let playerChoiceLower = playerChoice.toLowerCase()
-let computerChoiceLower = computerChoice.toLowerCase()
 
-let roundWinner = '';
+const alienChoice = getAlienChoice(gameChoice)
 
-// player choice
-if((playerChoiceLower === 'rock' && computerChoiceLower === 'scissors')||
-    (playerChoiceLower === 'scissors' && computerChoiceLower === 'paper')||
-    (playerChoiceLower === 'paper' && computerChoiceLower === 'rock')
+
+function getAlienChoice(choice){
+
+    return choice[Math.floor(Math.random() * choice.length)]
+}
+
+function playGame(playerChoice, alienChoice){
+
+
+
+ if(playerNumber > 4  ){
+     feedback.textContent = `Player wins and the earth is saved with a score of ${playerNumber}`
+     return
+ }
+
+  else if(alienNumber > 4 ){
+     feedback.textContent = `Alien wins and the earth is doomed with a score of ${alienNumber}`
+     return
+ }
+
+// player choice wins
+
+      
+
+if((playerChoice === 'rock' && alienChoice === 'scissors')||
+    (playerChoice === 'scissors' && alienChoice === 'paper')||
+    (playerChoice === 'paper' && alienChoice === 'rock')
     ){
-        roundWinner = `player wins: ${playerChoice} beats ${computerChoice}`
-        return roundWinner
+        feedback.textContent = `Player wins: ${playerChoice} beats ${alienChoice}`
+        playerNumber++
+      playerScore.innerHTML = playerNumber
+        
 }
 
 
-    // computer choice
-   else if((computerChoiceLower === 'rock' && playerChoiceLower === 'scissors')||
-    (computerChoiceLower === 'scissors' && playerChoiceLower === 'paper')||
-    (computerChoiceLower === 'paper' && playerChoiceLower === 'rock')
+    // alien choice wins
+   else if((alienChoice === 'rock' && playerChoice === 'scissors')||
+    (alienChoice === 'scissors' && playerChoice === 'paper')||
+    (alienChoice === 'paper' && playerChoice === 'rock')
     ){
-        roundWinner = `computer wins: ${computerChoice} beats ${playerChoice}`
-        return roundWinner
+        feedback.textContent = `Alien wins: ${alienChoice} beats ${playerChoice}`
+  
+        alienNumber++
+        alienScore.innerHTML = alienNumber
+       
     }
   
     else{
-        roundWinner = `draw: player got ${playerChoiceLower} and computer got ${computerChoiceLower}`
-        return roundWinner
+        feedback.textContent = `draw: Player got ${playerChoice} and Alien got ${alienChoice}`
+        
     }
   
 }
 
-//// Repeat the game 5 times and declare winner with highest count
+rock.addEventListener('click', function(e){
 
-function game(){
-let playerCount = 0;
-let computerCount = 0;
-for (let i = 0; i < 5; i++){
+   
+  playGame('rock', getAlienChoice(gameChoice) )
 
-    // gets the player choice
-const playerChoice = prompt('Enter rock, paper or scissors')
+  
+})
 
-///// gets the computer choice
-const computerChoice = getComputerChoice(gameChoice)
-    let whoWon = playGame(playerChoice, computerChoice) ?? ''
+paper.addEventListener('click', function(e){
 
-    if(whoWon.charAt(0) === 'p'){
-        playerCount += 1
-        console.log(whoWon)
-    }
-    else if (whoWon.charAt(0) === 'c'){
-        computerCount +=1
-         console.log(whoWon)
-    }
-    else{
-        console.log(whoWon)
-    }
-}
+  playGame('paper', getAlienChoice(gameChoice) )
+})
 
-if(playerCount > computerCount){
-    console.log(`Player won the game with a score of ${playerCount} agains computer with a score of ${computerCount}`)
-}
-else if(computerCount > playerCount){
-     console.log(`Computer won the game with a score of ${computerCount} agains player with a score of ${playerCount}`)
-}
-else{
-    console.log(`game ended in a draw with computer earning ${computerCount} points and player earning ${playerCount} points`)
-}
+scissors.addEventListener('click', function(e){
+  
+  playGame('scissors', getAlienChoice(gameChoice) )
+})
 
-}
 
-game()
+
+
+
+
